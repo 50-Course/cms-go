@@ -1,6 +1,10 @@
 package content
 
-import _ "github.com/golang/protobuf/ptypes/timestamp"
+import (
+	"fmt"
+
+	_ "github.com/golang/protobuf/ptypes/timestamp"
+)
 
 // Base Metadata
 //
@@ -32,6 +36,18 @@ type TextContent struct {
 	Url         string       `json:"url"`
 	Description string       `json:"alttext"`
 	Metadata    BaseMetadata `json:"metadata"`
+}
+
+func (c TextContent) GetContentID() int64 {
+	return c.Metadata.ID
+}
+
+func (c ImageContent) GetContentID() int64 {
+	return c.Metadata.ID
+}
+
+func (c VideoContent) GetContentID() int64 {
+	return c.Metadata.ID
 }
 
 // Author is essentually a user in the system that access to publish or moderate
@@ -66,4 +82,8 @@ type Content interface {
 // utlize this service in API Contracts and Testing layers (Such as integration testing)
 type ContentService struct {
 	Content
+}
+
+func ProcessContent(c Content) {
+	fmt.Printf("Please wait! Analysing  content...")
 }
