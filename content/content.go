@@ -44,6 +44,7 @@ type Author struct {
 
 // =======================================================
 // 	Content Service
+// TODO:  Implement the ContentService in the api/ package
 
 type Content interface {
 	// GetContentType returns the type of content
@@ -58,6 +59,7 @@ type Content interface {
 	DeleteContent(id int64) error
 }
 
+// TODO: Move to api/ package
 // ContentService is a service that provides content related operations
 //
 // It implements the Content interface, therefore providing us a way to
