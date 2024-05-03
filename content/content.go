@@ -41,3 +41,27 @@ type Author struct {
 	ID    int64  `json:"id"`
 	email string `json:"email"`
 }
+
+// =======================================================
+// 	Content Service
+
+type Content interface {
+	// GetContentType returns the type of content
+	GetContentType() string
+	// GetContent returns the content of the given id
+	GetContent(id int64) (interface{}, error)
+	// CreateContent creates a new content and returns the id of the created content
+	CreateContent(content interface{}) (int64, error)
+	// UpdateContent updates the content of the given id
+	UpdateContent(content interface{}) error
+	// Removes a given content from the platform given the id
+	DeleteContent(id int64) error
+}
+
+// ContentService is a service that provides content related operations
+//
+// It implements the Content interface, therefore providing us a way to
+// utlize this service in API Contracts and Testing layers (Such as integration testing)
+type ContentService struct {
+	Content
+}
